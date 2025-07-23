@@ -1,12 +1,31 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-size-xs: 0.75rem;
+  --font-size-s: 0.875rem;
+  --font-size-m: 1rem;
+  --font-size-l: 1.5rem;
+  --font-size-xl: 2rem;
+
+  --col-bg-0: hsl(25, 15%, 16%);
+  --col-bg-1: hsl(25, 15%, 18%);
+  --col-bg-2: hsl(25, 15%, 20%);
+  --col-bg-3: hsl(25, 15%, 22%);
+
+  --col-tx-0: hsl(0, 0%, 100%);
+  --col-tx-1: hsl(0, 0%, 80%);
+  --col-tx-2: hsl(0, 0%, 75%);
+  --col-tx-3: hsl(0, 0%, 65%);
+  
+  --col-brand-dark: hsl(26, 86%, 28%);
+  --col-brand-light: hsl(26, 97%, 50%);
+
+  --col-bg-success: hsl(115, 81%, 17%);
+  --col-tx-success: hsl(115, 32%, 71%);
+
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  
   }
 }
 
@@ -17,11 +36,17 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--col-tx-0);
+  background: var(--col-bg-0);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 * {

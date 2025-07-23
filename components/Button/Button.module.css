@@ -1,0 +1,31 @@
+.button {
+    --bg-color: var(--col-bg-2);
+    --tx-color: var(--col-tx-0);
+    --keybind-color: var(--col-tx-2);
+
+    padding: 1rem 2rem;
+    font-size: medium;
+
+    background: var(--bg-color);
+    color: var(--tx-color);
+
+    border: none;
+    border-radius: 10px;
+
+    position: relative;
+
+    .keybind {
+        position: absolute;
+        right: 1rem;
+        bottom: .5rem;
+
+        font-size: small;
+
+        color: var(--keybind-color);
+    }
+}
+
+.success {
+    --bg-color: var(--col-bg-success);
+    --tx-color: var(--col-tx-success);
+}

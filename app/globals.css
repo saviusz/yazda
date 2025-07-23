@@ -21,6 +21,8 @@
   --col-bg-success: hsl(115, 81%, 17%);
   --col-tx-success: hsl(115, 32%, 71%);
 
+  --radius-m: 10px;
+
 }
 
 @media (prefers-color-scheme: dark) {

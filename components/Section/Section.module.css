@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    
+
+    padding: var(--space-m);
+    gap: var(--space-m);
+
+    background: var(--col-bg-1);
+
+    border-radius: var(--radius-m);
+
+    &.open {
+        flex: 1;
+    }
+
+    transition: all 0.2s ease-in-out;
+}
+
+.content {
+    height: 100%;
+    flex: 1;
+
+    overflow-y: auto;
+}

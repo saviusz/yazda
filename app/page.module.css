@@ -21,7 +21,10 @@
 .left {
     /* width: var(--split); */
     /* width: 50%; */
+
+    gap: var(--space-m);
 }
 
 .right {
+    gap: var(--space-m);
 }

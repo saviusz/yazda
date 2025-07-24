@@ -1,0 +1,99 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input_container {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.slider {
+    width: 100%;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+
+    padding-block: .8rem;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        margin-top: -.75rem;
+    }
+
+    &::-ms-track {
+        width: 100%;
+        cursor: pointer;
+
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+
+        height: 2rem;
+        width: 1rem;
+        border-radius: 5px;
+        background: var(--col-brand-dark);
+        cursor: pointer;
+
+        &:active {
+            background: var(--col-brand-light);
+        }
+    }
+
+    &::-webkit-slider-thumb, &::-moz-range-thumb {
+        height: 2rem;
+        width: 1rem;
+        border: none;
+        border-radius: 5px;
+        background: var(--col-brand-dark);
+        cursor: pointer;
+
+        :active& {
+            background-color: var(--col-brand-light);
+        }
+    }
+
+    &::-webkit-slider-runnable-track, &::-moz-range-track {
+        width: 100%;
+        height: 9px;
+        cursor: pointer;
+        background: var(--col-bg-2);
+        border-radius: 4px;
+    }
+}
+
+.tag {
+    --progress: 100;
+    --_progress: clamp(0, var(--progress), 100);
+    --distance-from-side: 8px;
+
+    position: absolute;
+    top: 50%;
+    left: calc(var(--_progress) * (100% - var(--distance-from-side)*2) / 100 + var(--distance-from-side));
+    transform: translate(-50%, -50%);
+
+    z-index: -1;
+
+    width: 1.5rem;
+    height: 2.5rem;
+
+    border: solid 2px var(--col-brand-dark);
+    border-radius: 2px;
+}
+
+.texts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: small;
+    color: var(--col-tx-2);
+}
+
+.label {}
+
+.value {}

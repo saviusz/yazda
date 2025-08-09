@@ -31,8 +31,8 @@ export default function ConfigProvider({ children } : PropsWithChildren) {
         }
     }, [])
 
-    const setConfig = (config: Config) => {
-        if (config.autoEdit && window != undefined && window.localStorage) window.localStorage.setItem('config', JSON.stringify(config));
+    const setConfig = (config: Config | ((c: Config) => Config)) => {
+        if (window != undefined && window.localStorage) window.localStorage.setItem('config', JSON.stringify(config));
         return _setConfig(config)
     };
 
@@ -41,7 +41,7 @@ export default function ConfigProvider({ children } : PropsWithChildren) {
         export: () => config,
         import: (config: object) => setConfig(config as Config),
         getOption: (key) => config[key],
-        setOption: (key: keyof Config, value: Config[keyof Config]) => setConfig({...config, [key]: value})
+        setOption: (key: keyof Config, value: Config[keyof Config]) => setConfig(config => ({...config, [key]: value}))
     };
 
     return <ConfigContext.Provider value={value}>

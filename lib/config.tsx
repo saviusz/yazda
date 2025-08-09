@@ -4,10 +4,22 @@ import React, { PropsWithChildren, useEffect, useState } from 'react'
 
 export interface Config {
     leftPercentageWidth: number;
+
+    savedPositions: Array<{label: string, value: number, keybind: string}>;
+
+    savedSpeeds: Array<{label: string, value: number, keybind: string}>;
+    minSpeed: number;
+    maxSpeed: number;
 }
 
 export const defaultConfig: Config = {
-    leftPercentageWidth: 60
+    leftPercentageWidth: 60,
+
+    savedPositions: [],
+
+    savedSpeeds: [],
+    minSpeed: 0,
+    maxSpeed: 20
 }
 
 interface ContextObject {

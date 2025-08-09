@@ -28,3 +28,7 @@
 .right {
     gap: var(--space-m);
 }
+
+.selected {
+    border: solid 1px var(--col-brand-light) !important;
+}

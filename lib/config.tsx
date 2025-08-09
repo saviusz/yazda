@@ -14,8 +14,8 @@ interface ContextObject {
     config: Config,
     export: () => object,
     import: (config: object) => void,
-    getOption: (key: keyof Config) => Config[keyof Config],
-    setOption: (key: keyof Config, value: Config[keyof Config]) => void
+    getOption: <T extends keyof Config>(key: T) => Config[T],
+    setOption: <T extends keyof Config>(key: T, value: Config[T]) => void
 }
 
 const ConfigContext = React.createContext<ContextObject | null>(null);
@@ -32,7 +32,7 @@ export default function ConfigProvider({ children } : PropsWithChildren) {
     }, [])
 
     const setConfig = (config: Config) => {
-        if (window != undefined && window.localStorage) window.localStorage.setItem('config', JSON.stringify(config));
+        if (config.autoEdit && window != undefined && window.localStorage) window.localStorage.setItem('config', JSON.stringify(config));
         return _setConfig(config)
     };
 
@@ -40,7 +40,7 @@ export default function ConfigProvider({ children } : PropsWithChildren) {
         config,
         export: () => config,
         import: (config: object) => setConfig(config as Config),
-        getOption: (key: keyof Config) => config[key],
+        getOption: (key) => config[key],
         setOption: (key: keyof Config, value: Config[keyof Config]) => setConfig({...config, [key]: value})
     };
 
@@ -50,8 +50,8 @@ export default function ConfigProvider({ children } : PropsWithChildren) {
 }
 
 
-export function useConfig(key: keyof Config) {
+export function useConfig<T extends keyof Config>(key: T) {
     const context = React.useContext(ConfigContext);
     if (context === null) throw new Error('useConfig must be used within a ConfigProvider');
-    return [context.getOption(key), (value: Config[keyof Config]) => context.setOption(key, value)] as const;
+    return [context.getOption(key), (value: Config[T]) => context.setOption(key, value)] as const;
 }

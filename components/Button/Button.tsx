@@ -14,6 +14,7 @@ export interface Props {
     role?: ButtonRole
 
     className?: string;
+    disabled?: boolean;
 }
 
 export default function Button({
@@ -22,10 +23,11 @@ export default function Button({
     keybind,
     repeat = false,
     className,
-    role = "secondary"
+    role = "secondary",
+    disabled = false
 }: Props) {
 
-    const interval = useRef<NodeJS.Timeout | null>(null);
+    /* const interval = useRef<NodeJS.Timeout | null>(null);
 
     action = repeatAfterWait({
         cooldown: 100,
@@ -39,10 +41,17 @@ export default function Button({
 
     const stop = () => {
         if (interval.current) clearInterval(interval.current);
-    }
+    } */
 
     return (
-        <button className={clsx(style.button, className, style[role])} onPointerDown={start} onPointerUp={stop} onPointerCancel={stop}>
+        <button
+            disabled={disabled}
+            className={clsx(style.button, className, style[role])}
+            /* onPointerDown={start}
+            onPointerUp={stop}
+            onPointerCancel={stop} */
+            onClick={action}
+        >
             {text}
             <span className={style.keybind}>{keybind}</span>
         </button>

@@ -11,6 +11,10 @@ interface Props {
     progress?: number;
 
     onChange?: (value: number) => void
+
+    min?: number;
+    max?: number;
+    step?: number | null;
 }
 
 export default function Slider(props: Props) {
@@ -28,9 +32,9 @@ export default function Slider(props: Props) {
         <input
         type="range"
         className={style.slider}
-        min={0}
-        max={100}
-        step="any"
+        min={props.min || 0}
+        max={props.max || 100}
+        step={props.step || "any"}
 
         value={props.value}
         onChange={(e) => onChange(Number(e.target.value))}

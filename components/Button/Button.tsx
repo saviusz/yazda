@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import style from "./Button.module.css";
 import repeatAfterWait from '@/utils/repeatAferWait';
 import clsx from 'clsx';
@@ -24,24 +24,25 @@ export default function Button({
     className,
     role = "secondary"
 }: Props) {
-    let interval: NodeJS.Timeout;
 
-    if (repeat) action = repeatAfterWait({
+    const interval = useRef<NodeJS.Timeout | null>(null);
+
+    action = repeatAfterWait({
         cooldown: 100,
-        startRepeatingAfter: 800,
+        startRepeatingAfter: repeat ? 800 : Infinity,
         repeatEvery: 100
     }, action);
 
     const start = () => {
-        interval = setInterval(() => action(), 10);
+        interval.current = setInterval(() => action(), 10);
     }
 
     const stop = () => {
-        clearInterval(interval);
+        if (interval.current) clearInterval(interval.current);
     }
 
     return (
-        <button className={clsx(style.button, className, style[role])} onPointerDown={start} onPointerUp={stop}>
+        <button className={clsx(style.button, className, style[role])} onPointerDown={start} onPointerUp={stop} onPointerCancel={stop}>
             {text}
             <span className={style.keybind}>{keybind}</span>
         </button>

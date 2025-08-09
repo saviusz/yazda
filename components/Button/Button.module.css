@@ -3,16 +3,18 @@
     --tx-color: var(--col-tx-0);
     --keybind-color: var(--col-tx-2);
 
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     font-size: medium;
 
     background: var(--bg-color);
     color: var(--tx-color);
 
-    border: none;
+    border: solid 1px transparent;
     border-radius: 10px;
 
     position: relative;
+
+    transition: all 0.1s ease-in-out;
 
     .keybind {
         position: absolute;
@@ -22,6 +24,10 @@
         font-size: small;
 
         color: var(--keybind-color);
+    }
+
+    &:disabled {
+        opacity: 0.5;
     }
 }
 

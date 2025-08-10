@@ -1,0 +1,18 @@
+name: Feature Request
+title: "[Module]: "
+description: Propose new functionality
+labels:
+  - feature
+body:
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description
+      description: Describe the feature you want implemented
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you want implemented
